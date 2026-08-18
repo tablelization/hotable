@@ -59,8 +59,30 @@
       <div class="reflection reveal">
         <h2>感想</h2>
         <p>【在這裡寫下這件作品的感想 —— 當初為什麼想做這個、過程中遇到的困難、意外的驚喜，或是完成後的心情。】</p>
+      </div>
 
-        
+      <!-- 揭頁式 PDF 區段 -->
+      <div class="pdf-flipbook reveal" style="margin-top:32px;">
+        <p class="eyebrow">蛋誌 PDF</p>
+        <h3 style="margin-top:6px; margin-bottom:12px;">《童》PDF 版本</h3>
+        <p style="margin-bottom:12px;">按左右按鈕或點擊頁面左/右來翻頁。</p>
+
+        <div id="pdf-book" style="
+          position: relative;
+          width: 100%;
+          max-width: 800px;
+          height: 600px;
+          margin: 0 auto 16px auto;
+          background: #fff;
+          box-shadow: 0 2px 10px rgba(0,0,0,.15);
+          overflow: hidden;
+        "></div>
+
+        <div class="pdf-controls" style="display:flex; justify-content:center; align-items:center; gap:12px; margin-bottom:8px;">
+          <button id="pdf-prev" style="padding:6px 14px; cursor:pointer;">上一頁</button>
+          <span id="pdf-page-info" style="min-width:120px; text-align:center;"></span>
+          <button id="pdf-next" style="padding:6px 14px; cursor:pointer;">下一頁</button>
+        </div>
       </div>
 
       <div class="making-of reveal">
@@ -93,5 +115,90 @@
 </footer>
 
 <script src="js/main.js"></script>
+
+<!-- PDF.js + 揭頁式 PDF 邏輯 -->
+<script type="module">
+  import * as pdfjsLib from 'https://unpkg.com/pdfjs-dist@4.10.38/build/pdf.mjs';
+
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    'https://unpkg.com/pdfjs-dist@4.10.38/build/pdf.worker.mjs';
+
+  const pdfUrl = 'child.pdf'; // 你的 PDF 檔名
+  const container = document.getElementById('pdf-book');
+  const prevBtn = document.getElementById('pdf-prev');
+  const nextBtn = document.getElementById('pdf-next');
+  const pageInfo = document.getElementById('pdf-page-info');
+
+  let pdfDoc = null;
+  let currentPage = 1;
+  let scale = 1.5; // 解析度，可按需要調整
+
+  async function loadPdf() {
+    const loadingTask = pdfjsLib.getDocument(pdfUrl);
+    pdfDoc = await loadingTask.promise;
+
+    pageInfo.textContent = `共 ${pdfDoc.numPages} 頁`;
+    renderPage(currentPage);
+  }
+
+  async function renderPage(num) {
+    const page = await pdfDoc.getPage(num);
+
+    // 清理舊 canvas
+    container.innerHTML = '';
+
+    const viewport = page.getViewport({ scale });
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    // 讓 canvas 在容器內居中並適應寬度
+    canvas.style.position = 'absolute';
+    canvas.style.top = '50%';
+    canvas.style.left = '50%';
+    canvas.style.transform = 'translate(-50%, -50%)';
+    canvas.style.maxWidth = '100%';
+    canvas.style.maxHeight = '100%';
+
+    container.appendChild(canvas);
+
+    await page.render({
+      canvasContext: context,
+      viewport: viewport
+    }).promise;
+
+    currentPage = num;
+    pageInfo.textContent = `第 ${currentPage} / ${pdfDoc.numPages} 頁`;
+
+    // 禁用邊界按鈕
+    prevBtn.disabled = currentPage <= 1;
+    nextBtn.disabled = currentPage >= pdfDoc.numPages;
+  }
+
+  prevBtn.addEventListener('click', () => {
+    if (currentPage > 1) renderPage(currentPage - 1);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    if (currentPage < pdfDoc.numPages) renderPage(currentPage + 1);
+  });
+
+  // 點擊頁面左/右翻頁
+  container.addEventListener('click', (e) => {
+    if (!pdfDoc) return;
+    const rect = container.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    if (x < rect.width / 2) {
+      if (currentPage > 1) renderPage(currentPage - 1);
+    } else {
+      if (currentPage < pdfDoc.numPages) renderPage(currentPage + 1);
+    }
+  });
+
+  loadPdf();
+</script>
+
 </body>
 </html>
