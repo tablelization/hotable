@@ -1,0 +1,338 @@
+/* ==========================================================================
+   tablelization.com — 手作蛋誌風格樣式表
+   Design tokens
+   ========================================================================== */
+:root {
+  --paper:        #F1E8D6;   /* 米白紙張底色 */
+  --paper-dark:   #E4D6B8;   /* 陰影/次要底色 */
+  --ink:          #3A2E22;   /* 墨色文字 */
+  --ink-soft:     #6B5D4C;   /* 次要文字 */
+  --ochre:        #B9822F;   /* 芥末黃 — 連結/強調 */
+  --moss:         #67744A;   /* 苔綠 — 標籤/次強調 */
+  --clay:         #A2593A;   /* 赤陶/鏽紅 — 重點強調 */
+  --thread:       #9A3B3B;   /* 縫線紅 — 裝飾線 */
+  --line:         rgba(58,46,34,0.16);
+
+  --font-display: 'Caveat', 'cursive';
+  --font-body:    'Zilla Slab', 'Noto Serif TC', serif;
+  --font-mono:    'Space Mono', 'Noto Sans TC', monospace;
+
+  --radius: 3px;
+  --shadow-tape: 0 2px 6px rgba(58,46,34,0.18);
+  --container: 1080px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0.22  0 0 0 0 0.18  0 0 0 0 0.13  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+a { color: var(--clay); }
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; line-height: 1.15; margin: 0 0 .3em; }
+h1 { font-size: clamp(2.6rem, 6vw, 4.4rem); }
+h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); }
+h3 { font-size: 1.5rem; }
+p  { margin: 0 0 1em; }
+
+.wrap { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: .74rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* ---------- 隱藏工具類 ---------- */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+/* ==========================================================================
+   Header / 印章式 Logo + 導覽
+   ========================================================================== */
+.site-header {
+  position: sticky; top: 0; z-index: 40;
+  background: var(--paper);
+  border-bottom: 1px dashed var(--line);
+}
+.site-header .wrap {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 14px; padding-bottom: 14px; gap: 16px; flex-wrap: wrap;
+}
+
+.stamp-logo {
+  display: inline-flex; align-items: center; gap: 10px;
+  text-decoration: none; color: var(--ink);
+}
+.stamp-logo .badge {
+  width: 52px; height: 52px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid var(--ink);
+  outline: 1px dashed var(--clay);
+  outline-offset: 3px;
+  transform: rotate(-8deg);
+  background: var(--paper);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.stamp-logo .word {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+}
+.stamp-logo .sub {
+  display: block; font-family: var(--font-mono); font-size: .62rem;
+  letter-spacing: .16em; color: var(--ink-soft); text-transform: uppercase;
+}
+
+.main-nav ul { list-style: none; display: flex; gap: 4px; margin: 0; padding: 0; flex-wrap: wrap; }
+.main-nav a {
+  font-family: var(--font-mono);
+  font-size: .82rem;
+  text-decoration: none;
+  color: var(--ink);
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  display: inline-block;
+  transition: transform .15s ease, color .15s ease;
+}
+.main-nav a:hover, .main-nav a:focus-visible { color: var(--clay); transform: rotate(-2deg); }
+.main-nav a[aria-current="page"] {
+  text-decoration: underline wavy var(--ochre) 2px;
+  text-underline-offset: 4px;
+}
+
+/* ==========================================================================
+   縫線 / 撕紙分隔線
+   ========================================================================== */
+.stitch-divider {
+  height: 18px;
+  background-image:
+    linear-gradient(135deg, var(--paper) 25%, transparent 25%),
+    linear-gradient(225deg, var(--paper) 25%, transparent 25%),
+    linear-gradient(315deg, var(--paper) 25%, transparent 25%),
+    linear-gradient(45deg, var(--paper) 25%, transparent 25%);
+  background-position: -9px 0, -9px 0, 0 0, 0 0;
+  background-size: 18px 18px;
+  background-color: var(--paper-dark);
+}
+.stitch-divider.thread {
+  height: 0;
+  border-top: 2px dashed var(--thread);
+  margin: 0;
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.hero { padding: 64px 0 40px; }
+.hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+.hero p.tagline { font-family: var(--font-mono); font-size: .95rem; color: var(--ink-soft); max-width: 42ch; }
+
+.hero-art { position: relative; }
+.tape {
+  position: absolute; width: 80px; height: 26px;
+  background: rgba(185,130,47,.55);
+  box-shadow: var(--shadow-tape);
+}
+
+.polaroid {
+  background: #fffaf0;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-tape);
+  padding: 10px 10px 34px;
+  transform: rotate(-4deg);
+}
+.polaroid img, .polaroid .ph {
+  width: 100%; aspect-ratio: 4/3; object-fit: cover;
+  background: var(--paper-dark);
+}
+.polaroid figcaption {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* ==========================================================================
+   按鈕
+   ========================================================================== */
+.btn {
+  font-family: var(--font-mono);
+  font-size: .82rem;
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 20px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  color: var(--ink);
+  background: transparent;
+  transition: transform .15s ease, background .15s ease, color .15s ease;
+}
+.btn:hover, .btn:focus-visible { background: var(--ink); color: var(--paper); transform: rotate(-1.5deg); }
+.btn.solid { background: var(--clay); border-color: var(--clay); color: #fffaf0; }
+.btn.solid:hover { background: var(--ink); border-color: var(--ink); }
+
+/* ==========================================================================
+   Section 標題 + 印章徽章
+   ========================================================================== */
+.section-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 28px; }
+.badge-stamp {
+  font-family: var(--font-mono);
+  font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+  border: 1px dashed var(--moss); color: var(--moss);
+  padding: 3px 10px; border-radius: 999px; transform: rotate(-3deg);
+}
+
+.section { padding: 56px 0; }
+
+/* ==========================================================================
+   作品格線 / Polaroid 卡片
+   ========================================================================== */
+.work-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 34px 26px;
+}
+.work-card { text-decoration: none; color: var(--ink); display: block; }
+.work-card:nth-child(3n+1) .polaroid { transform: rotate(-3deg); }
+.work-card:nth-child(3n+2) .polaroid { transform: rotate(2deg); }
+.work-card:nth-child(3n)   .polaroid { transform: rotate(-1deg); }
+.work-card:hover .polaroid, .work-card:focus-visible .polaroid { transform: rotate(0deg) translateY(-4px); }
+.polaroid { transition: transform .2s ease; }
+.work-card .tag {
+  font-family: var(--font-mono); font-size: .68rem; color: var(--moss);
+  text-transform: uppercase; letter-spacing: .06em;
+}
+
+/* ==========================================================================
+   Instagram 區塊
+   ========================================================================== */
+.ig-box {
+  border: 1px dashed var(--line);
+  background: rgba(255,250,240,.5);
+  padding: 32px;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  flex-wrap: wrap;
+}
+.ig-box .icon { width: 46px; height: 46px; flex-shrink: 0; }
+
+/* ==========================================================================
+   蛋誌 / Egg Zine — 期刊列表
+   ========================================================================== */
+.issue-list { display: grid; gap: 22px; }
+.issue-item {
+  display: grid; grid-template-columns: 120px 1fr auto; gap: 22px; align-items: center;
+  background: rgba(255,250,240,.6);
+  border: 1px solid var(--line);
+  padding: 18px 22px;
+  text-decoration: none; color: var(--ink);
+  box-shadow: var(--shadow-tape);
+  transition: transform .15s ease;
+}
+.issue-item:hover, .issue-item:focus-visible { transform: translateX(4px); }
+.issue-item .num {
+  font-family: var(--font-display); font-size: 2.6rem; color: var(--clay);
+  text-align: center; border-right: 1px dashed var(--line); padding-right: 18px;
+}
+.issue-item .meta { font-family: var(--font-mono); font-size: .72rem; color: var(--ink-soft); }
+.issue-item h3 { margin: 4px 0 6px; }
+.issue-item .go { font-family: var(--font-mono); font-size: .78rem; color: var(--ochre); }
+
+@media (max-width: 560px) {
+  .issue-item { grid-template-columns: 60px 1fr; }
+  .issue-item .go { grid-column: 2; }
+}
+
+/* ==========================================================================
+   單篇 蛋誌 內頁
+   ========================================================================== */
+.issue-header { padding: 48px 0 24px; }
+.issue-header .meta { font-family: var(--font-mono); font-size: .8rem; color: var(--ink-soft); }
+.issue-gallery {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 22px; margin: 30px 0;
+}
+.issue-gallery .ph, .issue-gallery img {
+  width: 100%; aspect-ratio: 1/1; object-fit: cover; background: var(--paper-dark);
+  border: 1px solid var(--line);
+}
+.reflection {
+  max-width: 68ch; font-size: 1.05rem;
+}
+.reflection h3 { margin-top: 1.6em; }
+
+.making-of {
+  margin: 40px 0; padding: 26px; border: 1px dashed var(--line);
+  background: rgba(255,250,240,.5);
+}
+.making-of .video-frame {
+  position: relative; width: 100%; aspect-ratio: 16/9; background: var(--ink);
+  margin-top: 16px; overflow: hidden;
+}
+.making-of .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+.issue-nav { display: flex; justify-content: space-between; padding: 40px 0 60px; font-family: var(--font-mono); font-size: .85rem; gap: 16px; flex-wrap: wrap; }
+
+/* ==========================================================================
+   關於頁
+   ========================================================================== */
+.about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 48px; align-items: start; }
+.credential-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.credential-list li {
+  font-family: var(--font-mono); font-size: .85rem;
+  padding-left: 20px; position: relative;
+}
+.credential-list li::before { content: "✎"; position: absolute; left: 0; color: var(--clay); }
+
+/* ==========================================================================
+   聯絡頁
+   ========================================================================== */
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 20px; }
+.contact-card {
+  border: 1px solid var(--line); padding: 26px; text-decoration: none; color: var(--ink);
+  background: rgba(255,250,240,.6); transition: transform .15s ease;
+}
+.contact-card:hover, .contact-card:focus-visible { transform: rotate(-1deg) translateY(-3px); }
+.contact-card .icon { width: 30px; height: 30px; margin-bottom: 14px; }
+.contact-card .label { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+.contact-card .value { font-family: var(--font-display); font-size: 1.5rem; margin-top: 4px; }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer { padding: 40px 0 60px; }
+.site-footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; align-items: center; }
+.site-footer p { font-family: var(--font-mono); font-size: .74rem; color: var(--ink-soft); margin: 0; }
+.footer-links { display: flex; gap: 16px; }
+.footer-links a { color: var(--ink-soft); text-decoration: none; font-family: var(--font-mono); font-size: .74rem; }
+.footer-links a:hover { color: var(--clay); }
+
+/* ==========================================================================
+   Reveal animation
+   ========================================================================== */
+.reveal { opacity: 0; transform: translateY(14px) rotate(-.6deg); transition: opacity .6s ease, transform .6s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 780px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; }
+  .hero { padding: 40px 0 24px; }
+}
