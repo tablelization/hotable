@@ -14,7 +14,7 @@
 <header class="site-header">
   <div class="wrap">
     <a href="index.html" class="stamp-logo">
-      <span class="badge">桌</span>
+      <span class="badge">桌子</span>
       <span>
         <span class="word">tablelization</span>
         <span class="sub">插畫 · 手作 · 設計· 游水zine</span>
@@ -22,17 +22,17 @@
     </a>
     <nav class="main-nav" aria-label="主導覽">
       <ul>
-    <li><a href="index.html" aria-current="page">首頁</a></li>
+        <li><a href="index.html">首頁</a></li>
         <li><a href="portfolio.html">作品集</a></li>
         <li><a href="yaushuizine.html">游水zine</a></li>
-        <li><a href="eggzine.html">蛋誌</a></li>
+        <li><a href="eggzine.html" aria-current="page">蛋誌</a></li>
         <li><a href="about.html">關於</a></li>
         <li><a href="contact.html">聯絡</a></li>
       </ul>
     </nav>
   </div>
 </header>
-
+<p class="tagline" style="font-family: var(--font-mono); color: var(--ink-soft); max-width: 50ch;"></p>
 <main>
   <div class="wrap">
     <p style="margin-top:24px;"><a href="eggzine.html" class="eyebrow" style="text-decoration:none;">← 回蛋誌列表</a></p>
@@ -42,7 +42,7 @@
     <div class="wrap">
       <p class="meta">蛋誌 Issue 61 · 2026 · 《童》</p>
       <h1>《童》</h1>
-      <p class="tagline" style="font-family: var(--font-mono); color: var(--ink-soft); max-width: 50ch;">從一團陶土開始，做出一顆有表情的蛋。這是蛋誌的第一期，記錄它從構思到成形的整個過程。</p>
+      <p class="tagline" style="font-family: var(--font-mono); color: var(--ink-soft); max-width: 50ch;">【2026年ai 世代《兒童樂園》經典復刻。 輕輕問一句：你們的兒童樂園是怎樣的呢？】</p>
     </div>
   </header>
 
@@ -50,38 +50,33 @@
 
   <section class="section">
     <div class="wrap">
-      <!-- 作品照片：直接換成圖片路徑即可，範例如下 -->
+      <!-- 作品照片 -->
       <div class="issue-gallery">
-        <img class="reveal" src="images/egg_61_child.jpg" alt="作品照片 1">
-        <img class="reveal" src="images/your-image-2.jpg" alt="作品照片 2">
+        <img class="reveal" src="images/egg_61_childcover.jpg" alt="作品照片 1">
+        <img class="reveal" src="images/egg_61_child.jpg" alt="作品照片 2">
         <img class="reveal" src="images/your-image-3.jpg" alt="作品照片 3">
       </div>
 
       <div class="reflection reveal">
-        <h2>感想</h2>
-        <p>【在這裡寫下這件作品的感想 —— 當初為什麼想做這個、過程中遇到的困難、意外的驚喜，或是完成後的心情。】</p>
+        <h2></h2>
+        <p>【拿出你的手機，輕輕拍一下卡式帶，感受一下科技的便利】</p>
       </div>
 
-      <!-- 揭頁式 PDF 區段 -->
+      <!-- 揭頁式 PDF（帶翻頁效果） -->
       <div class="pdf-flipbook reveal" style="margin-top:32px;">
         <p class="eyebrow">蛋誌 PDF</p>
-        <h3 style="margin-top:6px; margin-bottom:12px;">《童》PDF 版本</h3>
-        <p style="margin-bottom:12px;">按左右按鈕或點擊頁面左/右來翻頁。</p>
-
+        <h3 style="margin-top:6px; margin-bottom:12px;">《童》</h3>
+        <p style="margin-bottom:12px;">拖曳頁面或按按鈕翻頁。</p>
+<p class="tagline" style="font-family: var(--font-mono); color: var(--ink-soft); max-width: 50ch;"></p>
         <div id="pdf-book" style="
-          position: relative;
           width: 100%;
-          max-width: 800px;
+          max-width: 900px;
           height: 600px;
           margin: 0 auto 16px auto;
-          background: #fff;
-          box-shadow: 0 2px 10px rgba(0,0,0,.15);
-          overflow: hidden;
         "></div>
 
-        <div class="pdf-controls" style="display:flex; justify-content:center; align-items:center; gap:12px; margin-bottom:8px;">
+        <div class="pdf-controls" style="display:flex; justify-content:center; gap:12px; margin-bottom:8px;">
           <button id="pdf-prev" style="padding:6px 14px; cursor:pointer;">上一頁</button>
-          <span id="pdf-page-info" style="min-width:120px; text-align:center;"></span>
           <button id="pdf-next" style="padding:6px 14px; cursor:pointer;">下一頁</button>
         </div>
       </div>
@@ -91,7 +86,6 @@
         <h3 style="margin-top:6px;">Making of </h3>
         <p style="margin-bottom:0;">完整製作過程放在 YouTube 頻道，記錄了從揉土到上色的每一步。</p>
         <div class="video-frame">
-          <!-- 將下方 src 換成你自己 YouTube 影片的嵌入連結（youtube.com/embed/影片ID） -->
           <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="egg_child 製作花絮" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
         </div>
       </div>
@@ -117,88 +111,87 @@
 
 <script src="js/main.js"></script>
 
-<!-- PDF.js + 揭頁式 PDF 邏輯 -->
+<!-- 1. 引入 page-flip 翻頁庫 -->
+<script src="https://unpkg.com/page-flip/dist/js/page-flip.browser.js"></script>
+
+<!-- 2. PDF.js + 翻頁邏輯 -->
 <script type="module">
   import * as pdfjsLib from 'https://unpkg.com/pdfjs-dist@4.10.38/build/pdf.mjs';
 
   pdfjsLib.GlobalWorkerOptions.workerSrc =
     'https://unpkg.com/pdfjs-dist@4.10.38/build/pdf.worker.mjs';
 
-  const pdfUrl = 'child.pdf'; // 你的 PDF 檔名
-  const container = document.getElementById('pdf-book');
+  const pdfUrl = 'child.pdf';
+  const bookEl = document.getElementById('pdf-book');
   const prevBtn = document.getElementById('pdf-prev');
   const nextBtn = document.getElementById('pdf-next');
-  const pageInfo = document.getElementById('pdf-page-info');
 
+  let flip = null;
   let pdfDoc = null;
-  let currentPage = 1;
-  let scale = 1.5; // 解析度，可按需要調整
 
-  async function loadPdf() {
+  async function init() {
+    // 載入 PDF
     const loadingTask = pdfjsLib.getDocument(pdfUrl);
     pdfDoc = await loadingTask.promise;
 
-    pageInfo.textContent = `共 ${pdfDoc.numPages} 頁`;
-    renderPage(currentPage);
+    // 為每一頁建立 .page 元素（先用 canvas 佔位）
+    for (let i = 1; i <= pdfDoc.numPages; i++) {
+      const pageEl = document.createElement('div');
+      pageEl.className = 'page';
+      pageEl.style.width = '100%';
+      pageEl.style.height = '100%';
+      pageEl.style.background = '#fff';
+      const canvas = document.createElement('canvas');
+      canvas.id = `page-canvas-${i}`;
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
+      pageEl.appendChild(canvas);
+      bookEl.appendChild(pageEl);
+    }
+
+    // 初始化翻頁書
+    flip = new StPageFlip.PageFlip(bookEl, {
+      width: 450,
+      height: 600,
+      size: 'stretch',
+      showCover: true,
+      mobileScrollSupport: false
+    });
+
+    flip.loadFromHTML(document.querySelectorAll('.page'));
+
+    // 渲染所有頁面到 canvas
+    for (let i = 1; i <= pdfDoc.numPages; i++) {
+      renderPageToCanvas(i);
+    }
+
+    // 按鈕控制
+    prevBtn.addEventListener('click', () => flip.flipPrev());
+    nextBtn.addEventListener('click', () => flip.flipNext());
   }
 
-  async function renderPage(num) {
+  async function renderPageToCanvas(num) {
     const page = await pdfDoc.getPage(num);
+    const canvas = document.getElementById(`page-canvas-${num}`);
+    const ctx = canvas.getContext('2d');
 
-    // 清理舊 canvas
-    container.innerHTML = '';
+    // 按 book 尺寸動態計算 scale
+    const rect = bookEl.getBoundingClientRect();
+    const baseScale = Math.min(rect.width, rect.height) / 600;
+    const scale = Math.max(1.5, baseScale * 2);
 
     const viewport = page.getViewport({ scale });
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
 
-    canvas.height = viewport.height;
     canvas.width = viewport.width;
-
-    // 讓 canvas 在容器內居中並適應寬度
-    canvas.style.position = 'absolute';
-    canvas.style.top = '50%';
-    canvas.style.left = '50%';
-    canvas.style.transform = 'translate(-50%, -50%)';
-    canvas.style.maxWidth = '100%';
-    canvas.style.maxHeight = '100%';
-
-    container.appendChild(canvas);
+    canvas.height = viewport.height;
 
     await page.render({
-      canvasContext: context,
+      canvasContext: ctx,
       viewport: viewport
     }).promise;
-
-    currentPage = num;
-    pageInfo.textContent = `第 ${currentPage} / ${pdfDoc.numPages} 頁`;
-
-    // 禁用邊界按鈕
-    prevBtn.disabled = currentPage <= 1;
-    nextBtn.disabled = currentPage >= pdfDoc.numPages;
   }
 
-  prevBtn.addEventListener('click', () => {
-    if (currentPage > 1) renderPage(currentPage - 1);
-  });
-
-  nextBtn.addEventListener('click', () => {
-    if (currentPage < pdfDoc.numPages) renderPage(currentPage + 1);
-  });
-
-  // 點擊頁面左/右翻頁
-  container.addEventListener('click', (e) => {
-    if (!pdfDoc) return;
-    const rect = container.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    if (x < rect.width / 2) {
-      if (currentPage > 1) renderPage(currentPage - 1);
-    } else {
-      if (currentPage < pdfDoc.numPages) renderPage(currentPage + 1);
-    }
-  });
-
-  loadPdf();
+  init();
 </script>
 
 </body>
