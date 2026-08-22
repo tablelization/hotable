@@ -10,7 +10,43 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<!-- 開場 Slide -->
+<div id="intro-slide" style="
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  font-family: 'Zilla Slab', serif;
+">
+  <div id="intro-title" style="
+    color: #111;
+    text-align: center;
+    display: block;
+    font-size: clamp(1.2rem, 2vw, 2.2rem);
+    letter-spacing: 0.04em;
+  ">蛋誌 Issue 61 —《童》by Table Ho</div>
 
+  <img id="intro-image" src="images/issue61/egg_61_intro.jpg" alt="蛋誌 Issue 61 開場" style="
+    width: auto;
+    height: auto;
+    max-width: 90vw;
+    max-height: 80vh;
+    object-fit: contain;
+    display: none;
+    background: #fff;
+  ">
+
+  <div id="intro-loading" style="
+    color: #111;
+    text-align: center;
+    display: none;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+  ">現正載入中...</div>
+</div>
 <header class="site-header">
   <div class="wrap">
     <a href="index.html" class="stamp-logo">
@@ -40,7 +76,7 @@
 
   <header class="issue-header">
     <div class="wrap">
-      <p class="meta">蛋誌 Issue 61 · 2026 · 《童》</p>
+      <p class="meta">蛋誌 Issue 61 · 2026 · 《童》 Table Ho</p>
       <h1>《童》</h1>
       <p class="tagline" style="font-family: var(--font-mono); color: var(--ink-soft); max-width: 50ch;">【2026年ai 世代《兒童樂園》經典復刻。 輕輕問一句：你們的兒童樂園是怎樣的呢？】</p>
     </div>
@@ -64,49 +100,58 @@
 
       <!-- 圖片翻頁書（八頁真實圖） -->
       <div class="pdf-flipbook reveal" style="margin-top:32px;">
-        <p class="eyebrow">蛋誌 PDF</p>
-        <h3 style="margin-top:6px; margin-bottom:12px;">《童》</h3>
+        <p class="eyebrow">蛋誌 Issue 61 童- by Table Ho</p>
+        <h3 style="margin-top:6px; margin-bottom:12px;">《童》印刷本</h3>
 
-        <div class="book-viewer" style="max-width: 900px; margin: 0 auto;">
-          <div class="page-flip" style="display:flex; gap:18px; align-items:center; justify-content:center;">
-            <button type="button" class="page-btn" data-dir="prev" aria-label="上一頁" style="padding:10px 14px; cursor:pointer;">←</button>
-            <div class="book-pages" style="position:relative; width:100%; max-width:700px; min-height:520px; perspective:1400px;">
-              <div class="page active" data-index="0" style="display:block; width:100%; max-width:700px; margin:0 auto; border:1px solid rgba(58,46,34,0.18); box-shadow:0 8px 22px rgba(58,46,34,0.12); background:#fff;">
+        <div class="book-viewer" style="max-width: 650px; margin: 0 auto; width: min(76vw, 650px);">
+          <div class="page-flip" style="display:flex; gap:10px; align-items:center; justify-content:center;">
+            <button type="button" class="page-btn" data-dir="prev" aria-label="上一頁" style="padding:10px 12px; cursor:pointer;">←</button>
+            <div class="book-pages" style="position:relative; width:100%; max-width:530px; min-height:400px; perspective:1400px; cursor:pointer;">
+              <div class="page active" data-index="0" style="display:block; width:100%; max-width:530px; margin:0 auto; border:1px solid rgba(58,46,34,0.18); box-shadow:0 8px 22px rgba(58,46,34,0.12); background:#fff;">
                 <img src="images/issue61/issue61_childbook 1.jpg" alt="《童》頁面 1" style="display:block; width:100%; height:auto;">
               </div>
-              <div class="page" data-index="1" style="display:none; width:100%; max-width:700px; margin:0 auto; border:1px solid rgba(58,46,34,0.18); box-shadow:0 8px 22px rgba(58,46,34,0.12); background:#fff; transform-origin:left center; animation: pageTurn .6s ease;">
+              <div class="page" data-index="1" style="display:none; width:100%; max-width:530px; margin:0 auto; border:1px solid rgba(58,46,34,0.18); box-shadow:0 8px 22px rgba(58,46,34,0.12); background:#fff; transform-origin:left center;">
                 <img src="images/issue61/issue61_childbook 2.jpg" alt="《童》頁面 2" style="display:block; width:100%; height:auto;">
               </div>
-              <div class="page" data-index="2" style="display:none; width:100%; max-width:700px; margin:0 auto; border:1px solid rgba(58,46,34,0.18); box-shadow:0 8px 22px rgba(58,46,34,0.12); background:#fff; transform-origin:left center; animation: pageTurn .6s ease;">
+              <div class="page" data-index="2" style="display:none; width:100%; max-width:530px; margin:0 auto; border:1px solid rgba(58,46,34,0.18); box-shadow:0 8px 22px rgba(58,46,34,0.12); background:#fff; transform-origin:left center;">
                 <img src="images/issue61/issue61_childbook 3.jpg" alt="《童》頁面 3" style="display:block; width:100%; height:auto;">
               </div>
-              <div class="page" data-index="3" style="display:none; width:100%; max-width:700px; margin:0 auto; border:1px solid rgba(58,46,34,0.18); box-shadow:0 8px 22px rgba(58,46,34,0.12); background:#fff; transform-origin:left center; animation: pageTurn .6s ease;">
+              <div class="page" data-index="3" style="display:none; width:100%; max-width:530px; margin:0 auto; border:1px solid rgba(58,46,34,0.18); box-shadow:0 8px 22px rgba(58,46,34,0.12); background:#fff; transform-origin:left center;">
                 <img src="images/issue61/issue61_childbook 4.jpg" alt="《童》頁面 4" style="display:block; width:100%; height:auto;">
               </div>
-              <div class="page" data-index="4" style="display:none; width:100%; max-width:700px; margin:0 auto; border:1px solid rgba(58,46,34,0.18); box-shadow:0 8px 22px rgba(58,46,34,0.12); background:#fff; transform-origin:left center; animation: pageTurn .6s ease;">
+              <div class="page" data-index="4" style="display:none; width:100%; max-width:530px; margin:0 auto; border:1px solid rgba(58,46,34,0.18); box-shadow:0 8px 22px rgba(58,46,34,0.12); background:#fff; transform-origin:left center;">
                 <img src="images/issue61/issue61_childbook 5.jpg" alt="《童》頁面 5" style="display:block; width:100%; height:auto;">
               </div>
-              <div class="page" data-index="5" style="display:none; width:100%; max-width:700px; margin:0 auto; border:1px solid rgba(58,46,34,0.18); box-shadow:0 8px 22px rgba(58,46,34,0.12); background:#fff; transform-origin:left center; animation: pageTurn .6s ease;">
+              <div class="page" data-index="5" style="display:none; width:100%; max-width:530px; margin:0 auto; border:1px solid rgba(58,46,34,0.18); box-shadow:0 8px 22px rgba(58,46,34,0.12); background:#fff; transform-origin:left center;">
                 <img src="images/issue61/issue61_childbook 6.jpg" alt="《童》頁面 6" style="display:block; width:100%; height:auto;">
               </div>
-              <div class="page" data-index="6" style="display:none; width:100%; max-width:700px; margin:0 auto; border:1px solid rgba(58,46,34,0.18); box-shadow:0 8px 22px rgba(58,46,34,0.12); background:#fff; transform-origin:left center; animation: pageTurn .6s ease;">
+              <div class="page" data-index="6" style="display:none; width:100%; max-width:530px; margin:0 auto; border:1px solid rgba(58,46,34,0.18); box-shadow:0 8px 22px rgba(58,46,34,0.12); background:#fff; transform-origin:left center;">
                 <img src="images/issue61/issue61_childbook 7.jpg" alt="《童》頁面 7" style="display:block; width:100%; height:auto;">
               </div>
-              <div class="page" data-index="7" style="display:none; width:100%; max-width:700px; margin:0 auto; border:1px solid rgba(58,46,34,0.18); box-shadow:0 8px 22px rgba(58,46,34,0.12); background:#fff; transform-origin:left center; animation: pageTurn .6s ease;">
+              <div class="page" data-index="7" style="display:none; width:100%; max-width:530px; margin:0 auto; border:1px solid rgba(58,46,34,0.18); box-shadow:0 8px 22px rgba(58,46,34,0.12); background:#fff; transform-origin:left center;">
                 <img src="images/issue61/issue61_childbook 8.jpg" alt="《童》頁面 8" style="display:block; width:100%; height:auto;">
               </div>
             </div>
-            <button type="button" class="page-btn" data-dir="next" aria-label="下一頁" style="padding:10px 14px; cursor:pointer;">→</button>
+            <button type="button" class="page-btn" data-dir="next" aria-label="下一頁" style="padding:10px 12px; cursor:pointer;">→</button>
           </div>
         </div>
+      </div>
+
+      <div class="philosophy reveal" style="margin-top:48px; margin-bottom:28px;">
+        <p class="eyebrow">創作理念</p>
+        <h3 style="margin-top:6px;">關於《童》的想像</h3>
+        <p style="margin-bottom:0;">你有注意到封面的細節嗎？ 畫面裡的孩子雖然坐在熟悉的遊樂設施上，手裡拿著的卻全是現代電子產品——這或許就是屬於這時代孩子的「兒童樂園」吧。</p>
+        <p style="margin-bottom:0; margin-top:16px;">這次的創作，我選擇以《兒童樂園》這份復古記憶為載體，並結合了科技的呈現方式。當你拿手機輕碰這盒迷你卡帶，畫面便會跳轉至互動網站。這種體驗，在我童年那個時代是完全無法想像的。</p>
+        <p style="margin-bottom:0; margin-top:16px;">我想把童年想像成一個被科技與時間輕輕覆蓋、卻從未真正消失的空間。透過手作的溫度、紙張的質感與遊戲式的敘事，我試著重新問自己：<strong>當我們長大後，究竟失去了什麼？又是否還能保留那份最原始的好奇與自由？</strong></p>
+        <p style="margin-bottom:0; margin-top:16px;">科技因為人類的想像力而進步，它能幫我們精準地重現過去，但許多珍貴的回憶，其實始終好好地藏在心底。螢幕再亮，有些東西依然無法被取代——像是當年我們在遊樂場裡並肩奔跑的汗水、與夥伴最真實的互動，以及人與人之間無法被數位化的溫度。</p>
       </div>
 
       <div class="making-of reveal">
         <p class="eyebrow">製作花絮</p>
         <h3 style="margin-top:6px;">Making of </h3>
-        <p style="margin-bottom:0;">完整製作過程放在 YouTube 頻道，記錄了從揉土到上色的每一步。</p>
+        <p style="margin-bottom:0;">完整製作過程放在 YouTube 頻道。歡迎Comment, Share and Subscribe!</p>
         <div class="video-frame">
-          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="egg_child 製作花絮" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          <iframe src="https://www.youtube.com/embed/tablilization" title="egg_child 製作花絮" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
         </div>
       </div>
 
@@ -131,33 +176,117 @@
 
 <script src="js/main.js"></script>
 <script>
+  const introSlide = document.getElementById('intro-slide');
+  const introTitle = document.getElementById('intro-title');
+  const introImage = document.getElementById('intro-image');
+  const introLoading = document.getElementById('intro-loading');
+
+  if (introSlide) {
+    setTimeout(() => {
+      introTitle.style.display = 'none';
+      introImage.style.display = 'block';
+    }, 1200);
+
+    setTimeout(() => {
+      introImage.style.display = 'none';
+      introLoading.style.display = 'block';
+    }, 3200);
+
+    setTimeout(() => {
+      introSlide.style.transition = 'opacity 0.6s ease';
+      introSlide.style.opacity = '0';
+      setTimeout(() => {
+        introSlide.style.display = 'none';
+      }, 600);
+    }, 4200);
+  }
+
   const pages = [...document.querySelectorAll('.page')];
   const pageButtons = document.querySelectorAll('.page-btn');
+  const bookPages = document.querySelector('.book-pages');
   let currentPage = 0;
 
-  function showPage(index) {
-    currentPage = Math.max(0, Math.min(index, pages.length - 1));
+  function showPage(index, direction = 1) {
+    const nextIndex = Math.max(0, Math.min(index, pages.length - 1));
+
     pages.forEach((page, i) => {
-      if (i === currentPage) {
+      page.classList.remove('turn-next', 'turn-prev');
+      if (i === nextIndex) {
         page.style.display = 'block';
+        page.classList.add(direction > 0 ? 'turn-next' : 'turn-prev');
       } else {
         page.style.display = 'none';
       }
     });
+
+    currentPage = nextIndex;
   }
 
   pageButtons.forEach((button) => {
     button.addEventListener('click', () => {
       const direction = button.dataset.dir === 'next' ? 1 : -1;
-      showPage(currentPage + direction);
+      showPage(currentPage + direction, direction);
     });
   });
+
+  if (bookPages) {
+    bookPages.addEventListener('click', (event) => {
+      const rect = bookPages.getBoundingClientRect();
+      const clickX = event.clientX - rect.left;
+      const direction = clickX > rect.width / 2 ? 1 : -1;
+      if (currentPage + direction >= 0 && currentPage + direction < pages.length) {
+        showPage(currentPage + direction, direction);
+      }
+    });
+  }
 </script>
 
 <style>
-  @keyframes pageTurn {
-    0% { transform: perspective(1200px) rotateY(0deg); opacity: 0.5; }
-    100% { transform: perspective(1200px) rotateY(-12deg); opacity: 1; }
+  .page {
+    transform-origin: left center;
+    will-change: transform, opacity;
+  }
+
+  .page.turn-next {
+    animation: pageTurnNext .55s cubic-bezier(.22, 1, .36, 1);
+  }
+
+  .page.turn-prev {
+    animation: pageTurnPrev .55s cubic-bezier(.22, 1, .36, 1);
+  }
+
+  @keyframes pageTurnNext {
+    0% {
+      transform: perspective(1200px) rotateY(0deg) translateX(0);
+      opacity: 0.7;
+      filter: brightness(0.96);
+    }
+    40% {
+      transform: perspective(1200px) rotateY(-18deg) translateX(8px);
+      opacity: 0.9;
+    }
+    100% {
+      transform: perspective(1200px) rotateY(-22deg) translateX(14px);
+      opacity: 1;
+      filter: brightness(1);
+    }
+  }
+
+  @keyframes pageTurnPrev {
+    0% {
+      transform: perspective(1200px) rotateY(0deg) translateX(0);
+      opacity: 0.7;
+      filter: brightness(0.96);
+    }
+    40% {
+      transform: perspective(1200px) rotateY(18deg) translateX(-8px);
+      opacity: 0.9;
+    }
+    100% {
+      transform: perspective(1200px) rotateY(22deg) translateX(-14px);
+      opacity: 1;
+      filter: brightness(1);
+    }
   }
 </style>
 
