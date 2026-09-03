@@ -201,26 +201,6 @@ p  { margin: 0 0 1em; }
 
 .section { padding: 56px 0; }
 
-.coming-soon-wrap {
-  min-height: 60vh; display: flex; align-items: center;
-}
-.coming-soon-panel {
-  text-align: center;
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 52px 28px;
-  border: 1px dashed var(--line);
-  background: rgba(255, 250, 240, 0.7);
-  box-shadow: var(--shadow-tape);
-}
-.coming-soon-panel h1 {
-  font-size: clamp(2.2rem, 5vw, 4rem);
-  margin-bottom: 12px;
-}
-.coming-soon-panel .tagline {
-  max-width: 40ch; margin: 0 auto 1.2em;
-}
-
 /* ==========================================================================
    作品格線 / Polaroid 卡片
    ========================================================================== */
